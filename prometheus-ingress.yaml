@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  creationTimestamp: 2018-09-19T20:17:09Z
+  generation: 15
+  name: prometheus-ingress
+  namespace: monitoring
+spec:
+  rules:
+  - host: prometheus.easynvest.com.br
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus
+          servicePort: 9090
+        path: /

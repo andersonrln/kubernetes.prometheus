@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: netdata-deployment
+  namespace: monitoring
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: netdata-monitor
+    spec:
+      containers:
+        - name: netdata-deployment
+          image: netdata/netdata
+          ports:
+            - containerPort: 19999
+          volumeMounts:
+            - name: netdata-volume
+              mountPath: /data/
+      volumes:
+        - name: netdata-volume
+          emptyDir: {}
+

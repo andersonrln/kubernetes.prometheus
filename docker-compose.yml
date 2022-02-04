@@ -1,0 +1,32 @@
+version: '3'
+services:
+    prometheus:
+        ports:
+            - '9090:9090'
+        container_name: prometheus
+        volumes:
+            - '/home/estabilis.renato/Documentos/github/easynvest.prometheus/prometheus/config:/etc/prometheus'
+        logging:
+            options:
+                max-size: 1g
+        image: prom/prometheus
+    blackbox:
+        ports:
+            - '9115:9115'
+        container_name: blackbox
+        volumes:
+            - '/home/estabilis.renato/Documentos/github/easynvest.prometheus/blackbox-exporter/config/:/config'
+        logging:
+            options:
+                max-size: 1g
+        image: easynvest.blackbox-exporter
+    grafana:
+        ports:
+            - '3000:3000'
+        container_name: grafana
+        #volumes:
+        #    - '/home/estabilis.renato/Documentos/github/easynvest.prometheus/blackbox-exporter/config/:/config'
+        logging:
+            options:
+                max-size: 1g
+        image: grafana/grafana
